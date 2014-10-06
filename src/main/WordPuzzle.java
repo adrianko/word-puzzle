@@ -1,4 +1,5 @@
-package main;/*
+package main;
+/*
 You have an array of english words {cat, then, hen, end, dog}. Can you make out
 if the given sentence is a concatenation of only words from the array?
 Cathen valid
@@ -12,6 +13,10 @@ import java.util.Set;
 public class WordPuzzle {
 
     private Set<Node> nodes = new HashSet<Node>();
+
+    public WordPuzzle() {
+        nodes.add(new Node('0'));
+    }
 
     public void addWord(String word) {
         char[] chars = word.toCharArray();

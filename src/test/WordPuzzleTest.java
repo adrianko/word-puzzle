@@ -29,6 +29,7 @@ public class WordPuzzleTest {
 
     @org.junit.Test
     public void testWordPuzzleCathen() throws Exception {
+        setUp();
         String exp = "valid";
         String act = wp.checkWord("cathen");
         assertEquals(exp, act);
@@ -36,6 +37,7 @@ public class WordPuzzleTest {
 
     @org.junit.Test
     public void testWordPuzzleThend() throws Exception {
+        setUp();
         String exp = "not valid";
         String act = wp.checkWord("thend");
         assertEquals(exp, act);
@@ -43,6 +45,7 @@ public class WordPuzzleTest {
 
     @org.junit.Test
     public void testWordPuzzleCathenend() throws Exception {
+        setUp();
         String exp = "valid";
         String act = wp.checkWord("cathenend");
         assertEquals(exp, act);
