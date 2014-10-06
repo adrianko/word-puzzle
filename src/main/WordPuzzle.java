@@ -1,4 +1,4 @@
-/*
+package main;/*
 You have an array of english words {cat, then, hen, end, dog}. Can you make out
 if the given sentence is a concatenation of only words from the array?
 Cathen valid
@@ -14,10 +14,21 @@ public class WordPuzzle {
     private Set<Node> nodes = new HashSet<Node>();
 
     public void addWord(String word) {
-        for(char c : word.toCharArray()) {
+        char[] chars = word.toCharArray();
+        int pos = 0;
+
+        for(char c : chars) {
+            pos++;
             Node n = new Node(c);
+            if(pos == chars.length) {
+                n.setWordEnd(true);
+            }
             nodes.add(n);
         }
+    }
+
+    public void printNodes() {
+        System.out.println(nodes);
     }
 
     public String checkWord(String word) {
@@ -32,6 +43,8 @@ public class WordPuzzle {
         wp.addWord("hen");
         wp.addWord("end");
         wp.addWord("dog");
+
+        wp.printNodes();
 
         String[] wordsToCheck = {"cathen", "thend", "cathenend"};
         for(String w : wordsToCheck) {
