@@ -21,7 +21,7 @@ public class WordPuzzle {
     }
 
     public String checkWord(String word) {
-        if(!words.isEmpty()) {
+        if (!words.isEmpty()) {
             String pattern = "^(";
             for (String p : words.descendingSet()) {
                 pattern += p + "|";
@@ -47,8 +47,8 @@ public class WordPuzzle {
         wp.addWord("dog");
 
         String[] wordsToCheck = {"cathen", "thend", "cathenend", "thenhenf"};
-        for(String w : wordsToCheck) {
-            System.out.println(w+" | "+wp.checkWord(w));
+        for (String w : wordsToCheck) {
+            System.out.println(w + " | " + wp.checkWord(w));
         }
     }
 
