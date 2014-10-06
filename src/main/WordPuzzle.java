@@ -7,7 +7,6 @@ thend not valid
 cathenend valid
  */
 
-import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,11 +22,14 @@ public class WordPuzzle {
     public String checkWord(String word) {
         if (!words.isEmpty()) {
             String pattern = "^(";
+
             for (String p : words.descendingSet()) {
                 pattern += p + "|";
             }
+
             pattern = pattern.substring(0, pattern.length() - 1) + ")+$";
             Matcher m = Pattern.compile(pattern).matcher(word);
+
             if (m.find()) {
                 return "valid";
             }
