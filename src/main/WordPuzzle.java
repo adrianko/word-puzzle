@@ -7,38 +7,35 @@ thend not valid
 cathenend valid
  */
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WordPuzzle {
 
-    private Set<Node> nodes = new HashSet<Node>();
-
-    public WordPuzzle() {
-        nodes.add(new Node('0'));
-    }
+    private TreeSet<String> words = new TreeSet<String>();
 
     public void addWord(String word) {
-        char[] chars = word.toCharArray();
-        int pos = 0;
-
-        for(char c : chars) {
-            pos++;
-            Node n = new Node(c);
-            if(pos == chars.length) {
-                n.setWordEnd(true);
-            }
-            nodes.add(n);
-        }
-    }
-
-    public void printNodes() {
-        System.out.println(nodes);
+        words.add(word);
     }
 
     public String checkWord(String word) {
-        return "valid";
-        //return "not valid";
+        if(!words.isEmpty()) {
+            String pattern = "^(";
+            for (String p : words.descendingSet()) {
+                pattern += p + "|";
+            }
+            pattern = pattern.substring(0, pattern.length() - 1) + ")+$";
+            Matcher m = Pattern.compile(pattern).matcher(word);
+            if (m.find()) {
+                return "valid";
+            }
+
+            return "not valid";
+        }
+
+        return "add some words";
     }
 
     public static void main(String[] args) {
@@ -49,11 +46,9 @@ public class WordPuzzle {
         wp.addWord("end");
         wp.addWord("dog");
 
-        wp.printNodes();
-
-        String[] wordsToCheck = {"cathen", "thend", "cathenend"};
+        String[] wordsToCheck = {"cathen", "thend", "cathenend", "thenhenf"};
         for(String w : wordsToCheck) {
-            System.out.println(w+" "+wp.checkWord(w));
+            System.out.println(w+" | "+wp.checkWord(w));
         }
     }
 
